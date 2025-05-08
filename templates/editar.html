@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Funcionário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Editar Funcionário</h1>
+    <form method="post">
+        <label>Nome:</label>
+        <input type="text" name="nome" value="{{ funcionario.nome }}" required>
+
+        <label>Observação:</label>
+        <input type="text" name="observacao" value="{{ funcionario.observacao }}">
+
+        <label>Nota:</label>
+        <input type="number" name="nota" value="{{ funcionario.nota }}" min="0" max="10" step="0.1" required>
+
+        <label>Evento:</label>
+        <input type="text" name="evento" value="{{ funcionario.evento }}" required>
+
+        <label>Data do Evento:</label>
+        <input type="date" name="data" value="{{ funcionario.data.strftime('%Y-%m-%d') }}" required>
+
+        <label>Lista:</label>
+        <select name="lista">
+            <option value="favoritos" {% if funcionario.lista == 'favoritos' %}selected{% endif %}>Favoritos</option>
+            <option value="excluidos" {% if funcionario.lista == 'excluidos' %}selected{% endif %}>Excluídos</option>
+        </select>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a class="button-link" href="/">Voltar ao Menu</a>
+</body>
+</html>

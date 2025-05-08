@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizações de {{ funcionario.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Histórico de Atualizações: {{ funcionario.nome }}</h1>
+    {% if atualizacoes %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for a in atualizacoes %}
+                <li style="margin-bottom: 10px;">
+                    <div style="padding: 10px; background-color: white; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                        <strong>{{ a.data.strftime('%d/%m/%Y') }}:</strong> {{ a.observacao }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sem atualizações registradas.</p>
+    {% endif %}
+    <a class="button-link" href="/listar">Voltar</a>
+</body>
+</html>

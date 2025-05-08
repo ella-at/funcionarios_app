@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Atualização</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Atualizar Funcionário: {{ funcionario.nome }}</h1>
+    <form method="post">
+        <label>Nova Observação:</label>
+        <input type="text" name="observacao" required>
+
+        <label>Data:</label>
+        <input type="date" name="data" required>
+
+        <button type="submit">Salvar Atualização</button>
+    </form>
+    <a class="button-link" href="/listar">Voltar</a>
+</body>
+</html>
