@@ -15,7 +15,7 @@
         <input type="text" name="observacao">
 
         <label>Nota:</label>
-        <input type="number" name="nota" min="0" max="10" step="0.1" required>
+        <input type="number" name="nota" min="0" max="10" step="0.5" required>
 
         <label>Evento:</label>
         <input type="text" name="evento" required>
@@ -25,8 +25,9 @@
 
         <label>Lista:</label>
         <select name="lista">
-            <option value="favoritos">Favoritos</option>
-            <option value="excluidos">Excluídos</option>
+            <option value="novos">Novo</option>
+            <option value="favoritos">Favorito</option>
+            <option value="excluidos">Bloqueado</option>
         </select>
 
         <button type="submit">Cadastrar</button>

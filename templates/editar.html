@@ -25,8 +25,9 @@
 
         <label>Lista:</label>
         <select name="lista">
-            <option value="favoritos" {% if funcionario.lista == 'favoritos' %}selected{% endif %}>Favoritos</option>
-            <option value="excluidos" {% if funcionario.lista == 'excluidos' %}selected{% endif %}>Excluídos</option>
+            <option value="novos" {% if funcionario.lista == 'novos' %}selected{% endif %}>Novo</option>
+            <option value="favoritos" {% if funcionario.lista == 'favoritos' %}selected{% endif %}>Favorito</option>
+            <option value="excluidos" {% if funcionario.lista == 'excluidos' %}selected{% endif %}>Bloqueado</option>
         </select>
 
         <button type="submit">Salvar</button>

@@ -6,6 +6,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
+    <h1>Funcionários Novos</h1>
+    {% if novos %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for f in novos %}
+                <li style="margin-bottom: 20px;">
+                    <div style="padding: 15px; background-color: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-bottom: 10px;">
+                            <strong>{{ f.nome }}</strong> | {{ f.evento }} | {{ f.data.strftime('%d/%m/%Y') }} |
+                            Nota: {{ f.nota }} | Obs: {{ f.observacao }}
+                        </p>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="/editar/{{ f.id }}" class="button-link" style="background-color: #004d99;">Editar Info</a>
+                            <a href="/atualizar/{{ f.id }}" class="button-link" style="background-color: #339933;">Cadastrar Atualização</a>
+                            <a href="/ver_atualizacoes/{{ f.id }}" class="button-link" style="background-color: #f9a941;">Ver Atualizações</a>
+                            <form method="post" action="/excluir/{{ f.id }}" style="margin: 0;">
+                                <button type="submit" class="button-link" style="background-color: #cc0000;">Excluir</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum funcionário novo.</p>
+    {% endif %}
+
+
+
     <h1>Funcionários Favoritos</h1>
     {% if favoritos %}
         <ul style="list-style-type: none; padding: 0;">
@@ -33,7 +63,7 @@
         <p>Nenhum funcionário favorito.</p>
     {% endif %}
 
-    <h1>Funcionários Excluídos</h1>
+    <h1>Funcionários Bloqueados</h1>
     {% if excluidos %}
         <ul style="list-style-type: none; padding: 0;">
             {% for f in excluidos %}
@@ -57,8 +87,10 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>Nenhum funcionário excluído.</p>
+        <p>Nenhum funcionário bloqueado.</p>
     {% endif %}
+
+
 
     <a class="button-link" href="/" style="margin-top: 30px; display: inline-block;">Voltar ao Menu</a>
 </body>

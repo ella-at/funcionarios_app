@@ -59,9 +59,10 @@ def cadastrar():
 # Listagem
 @app.route('/listar')
 def listar():
+    novos = Funcionario.query.filter_by(lista='novos').all()
     favoritos = Funcionario.query.filter_by(lista='favoritos').all()
     excluidos = Funcionario.query.filter_by(lista='excluidos').all()
-    return render_template('listar.html', favoritos=favoritos, excluidos=excluidos)
+    return render_template('listar.html', favoritos=favoritos, excluidos=excluidos, novos=novos)
 
 # Edição
 @app.route('/editar/<int:id>', methods=['GET', 'POST'])
