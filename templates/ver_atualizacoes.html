@@ -4,22 +4,58 @@
     <meta charset="UTF-8">
     <title>Atualizações de {{ funcionario.nome }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Histórico de Atualizações: {{ funcionario.nome }}</h1>
+
     {% if atualizacoes %}
         <ul style="list-style-type: none; padding: 0;">
             {% for a in atualizacoes %}
                 <li style="margin-bottom: 10px;">
                     <div style="padding: 10px; background-color: white; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
                         <strong>{{ a.data.strftime('%d/%m/%Y') }}:</strong> {{ a.observacao }}
+                        <span style="font-style: italic; float: right;">({{ a.tipo }})</span>
                     </div>
                 </li>
             {% endfor %}
         </ul>
+
+        <!-- Gráfico -->
+        <h2>Classificação das Atualizações</h2>
+        <div style="max-width: 300px; margin: auto;">
+            <canvas id="graficoTipo"></canvas>
+        </div>
+
+        <script>
+            const ctx = document.getElementById('graficoTipo').getContext('2d');
+            const graficoTipo = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Positivas', 'Negativas'],
+                    datasets: [{
+                        data: [{{ positivas }}, {{ negativas }}],
+                        backgroundColor: ['#4CAF50', '#F44336']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Atualizações'
+                        }
+                    }
+                }
+            });
+        </script>
     {% else %}
         <p>Sem atualizações registradas.</p>
     {% endif %}
+
     <a class="button-link" href="/listar">Voltar</a>
 </body>
 </html>
