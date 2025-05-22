@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # Banco de dados (Render usa DATABASE_URL no ambiente)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///local.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('postgresql://lista_tst_user:Q6l0XHfKeqCKdNz5kEnPv88zrYqfSYLN@dpg-d0edlsuuk2gs73fcp5a0-a/lista_tst', 'sqlite:///local.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
